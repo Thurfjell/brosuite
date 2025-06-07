@@ -1,4 +1,11 @@
 # Hi
 
-## go mod tidy
-## go run cmd/api/main.go
+#### BEWARE! 
+Compiling with poor usage of gofakeit can be slow.
+
+```bash
+go mod tidy
+```
+```bash
+go run cmd/api/main.go
+```
