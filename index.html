@@ -1,769 +1,1170 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Don't think just watch</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
-    <script>
-
-    </script>
+    <script></script>
     <style>
-        .nav-link {
-            position: relative;
-            color: #d1d5db;
-            /* text-gray-300 */
-            transition: color 0.2s ease;
-        }
+      .nav-link {
+        position: relative;
+        color: #d1d5db;
+        /* text-gray-300 */
+        transition: color 0.2s ease;
+      }
 
-        .nav-link:hover,
-        .nav-link:focus {
-            color: #a5b4fc;
-            /* text-indigo-300 */
-        }
+      .nav-link:hover,
+      .nav-link:focus {
+        color: #a5b4fc;
+        /* text-indigo-300 */
+      }
 
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #818cf8;
-            /* bg-indigo-400 */
-            transition: width 0.3s ease;
-        }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #818cf8;
+        /* bg-indigo-400 */
+        transition: width 0.3s ease;
+      }
 
-        .nav-link:hover::after,
-        .nav-link:focus::after {
-            width: 100%;
-        }
+      .nav-link:hover::after,
+      .nav-link:focus::after {
+        width: 100%;
+      }
 
-        .nav-link-active {
-            color: #818cf8;
-            /* text-indigo-400 */
-            font-weight: 600;
-        }
+      .nav-link-active {
+        color: #818cf8;
+        /* text-indigo-400 */
+        font-weight: 600;
+      }
 
-        .nav-link-active::after {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #6366f1;
-            /* bg-indigo-500 */
-        }
+      .nav-link-active::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #6366f1;
+        /* bg-indigo-500 */
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-900 text-white font-sans">
-    <header class="bg-gradient-to-r from-purple-700 to-pink-600 text-white shadow-lg sticky top-0 z-50">
-        <!-- Top Nav -->
-        <nav
-            class="sticky top-0 z-50 w-full bg-gray-950/70 backdrop-blur-sm text-white px-4 py-2 flex items-center justify-between shadow border-b border-gray-800">
-            <!-- Logo -->
-            <div class="text-2xl font-mono font-extrabold tracking-tight text-indigo-400 drop-shadow-md">
-                BroSuite_
-            </div>
+  <body class="bg-gray-900 text-white font-sans">
+    <header
+      class="bg-gradient-to-r from-purple-700 to-pink-600 text-white shadow-lg sticky top-0 z-50"
+    >
+      <!-- Top Nav -->
+      <nav
+        class="sticky top-0 z-50 w-full bg-gray-950/70 backdrop-blur-sm text-white px-4 py-2 flex items-center justify-between shadow border-b border-gray-800"
+      >
+        <!-- Logo -->
+        <div
+          class="text-2xl font-mono font-extrabold tracking-tight text-indigo-400 drop-shadow-md"
+        >
+          BroSuite_
+        </div>
 
-            <!-- Right side nav -->
-            <div class="flex items-center gap-4 text-sm whitespace-nowrap">
-                <a href="#"
-                    class="relative hover:text-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors">Help</a>
-                <a href="#"
-                    class="relative hover:text-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors">Feedback</a>
+        <!-- Right side nav -->
+        <div class="flex items-center gap-4 text-sm whitespace-nowrap">
+          <a
+            href="#"
+            class="relative hover:text-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors"
+            >Help</a
+          >
+          <a
+            href="#"
+            class="relative hover:text-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-colors"
+            >Feedback</a
+          >
 
-                <div class="h-5 w-px bg-gray-700 mx-2 hidden sm:block"></div>
+          <div class="h-5 w-px bg-gray-700 mx-2 hidden sm:block"></div>
 
-                <div class="text-right leading-tight hidden sm:block">
-                    <div class="font-semibold text-white">Casey Brostein</div>
-                    <div class="text-xs text-gray-400">ACME Inc · Contractor</div>
-                </div>
+          <div class="text-right leading-tight hidden sm:block">
+            <div class="font-semibold text-white">Casey Brostein</div>
+            <div class="text-xs text-gray-400">ACME Inc · Contractor</div>
+          </div>
 
-                <div
-                    class="ml-2 w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-sm font-bold shadow-inner shadow-indigo-700/30">
-                    CB
-                </div>
-            </div>
-        </nav>
+          <div
+            class="ml-2 w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-sm font-bold shadow-inner shadow-indigo-700/30"
+          >
+            CB
+          </div>
+        </div>
+      </nav>
 
-        <!-- Second Nav -->
-        <nav
-            class="sticky top-[56px] z-40 w-full bg-gray-900/80 backdrop-blur px-4 py-2 border-b border-gray-800 overflow-x-auto">
-            <div class="flex gap-6 text-sm min-w-max">
-                <a href="#" class="nav-link nav-link-active">
-                    Dashboard
-                </a>
-                <a href="#" class="nav-link">
-                    My time
-                </a>
-                <a href="#" class="nav-link">My
-                    personal info</a>
-            </div>
-        </nav>
+      <!-- Second Nav -->
+      <nav
+        class="sticky top-[56px] z-40 w-full bg-gray-900/80 backdrop-blur px-4 py-2 border-b border-gray-800 overflow-x-auto"
+      >
+        <div class="flex gap-6 text-sm min-w-max">
+          <a href="#" class="nav-link nav-link-active"> Dashboard </a>
+          <a href="#" class="nav-link"> My time </a>
+          <a href="#" class="nav-link">My personal info</a>
+        </div>
+      </nav>
     </header>
 
     <main
-        class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
-        <h1 class="text-xl font-semibold text-white tracking-tight mb-2 col-span-full">Dashboard</h1>
+      class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6"
+    >
+      <h1
+        class="text-xl font-semibold text-white tracking-tight mb-2 col-span-full"
+      >
+        Dashboard
+      </h1>
 
-        <!-- Left Sidebar -->
-        <aside class="lg:col-span-2 space-y-4">
+      <!-- Left Sidebar -->
+      <aside class="lg:col-span-3 space-y-4">
+        <!-- My leave balance widget -->
+        <div
+          class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-sm text-white"
+        >
+          <h3 class="text-sm font-semibold text-indigo-300 mb-3">
+            My Leave Balance
+          </h3>
 
-            <!-- My leave balance widget -->
-            <div class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-sm text-white">
-                <h3 class="text-sm font-semibold text-indigo-300 mb-3">My Leave Balance</h3>
-
-                <div class="space-y-3">
-
-                    <!-- Annual Leave -->
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="text-gray-400">Annual Leave</p>
-                            <p><span class="text-lg font-bold text-green-400">16</span><span class="text-gray-400"> / 24
-                                    days</span></p>
-                        </div>
-                        <div class="w-20 h-2 bg-gray-700 rounded">
-                            <div class="h-2 bg-green-500 rounded" style="width:66%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Training Leave -->
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="text-gray-400">Training Leave</p>
-                            <p><span class="text-lg font-bold text-blue-400">4</span><span class="text-gray-400"> / 10
-                                    days</span></p>
-                        </div>
-                        <div class="w-20 h-2 bg-gray-700 rounded">
-                            <div class="h-2 bg-blue-500 rounded" style="width:40%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Special Leave -->
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="text-gray-400">OS Leave</p>
-                            <p><span class="text-lg font-bold text-orange-400">9</span><span class="text-gray-400"> / 12
-                                    days</span></p>
-                        </div>
-                        <div class="w-20 h-2 bg-gray-700 rounded">
-                            <div class="h-2 bg-orange-400 rounded" style="width:75%"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- My approved widget -->
-            <div class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-sm text-white">
-                <h3 class="text-sm font-semibold text-indigo-300 mb-3">My Approved Annual Leave</h3>
-
-                <!-- Total Summary -->
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-gray-400">Total days</p>
-                    <p class="text-lg font-bold text-green-400">14</p>
-                </div>
-
-                <!-- List of Leave Entries -->
-                <div class="space-y-3">
-
-                    <div class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900">
-                        <div>
-                            <p class="text-gray-300 font-medium">01 Jul – 05 Jul</p>
-                            <p class="text-gray-500">Mon to Fri</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-green-300">5 days</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900">
-                        <div>
-                            <p class="text-gray-300 font-medium">15 Jul – 19 Jul</p>
-                            <p class="text-gray-500">Mon to Fri</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-green-300">5 days</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900">
-                        <div>
-                            <p class="text-gray-300 font-medium">29 Jul – 31 Jul</p>
-                            <p class="text-gray-500">Mon to Wed</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-green-300">3 days</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <section class="lg:col-span-7 space-y-4">
-            <!-- Links widget -->
-            <div class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white">
-                <h3 class="text-sm font-semibold text-indigo-300 mb-3">Shortcut Links</h3>
-
-                <div class="grid grid-cols-2 gap-4 text-sm">
-
-                    <!-- Time Off Group -->
-                    <a href="#"
-                        class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition">
-                        <div class="text-indigo-400">
-                            <!-- Heroicon: Calendar -->
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-medium text-white">Time Off</p>
-                            <p class="text-gray-400 text-xs">Manage requests and summary</p>
-                        </div>
-                    </a>
-
-                    <!-- Timesheet -->
-                    <a href="#"
-                        class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition">
-                        <div class="text-orange-400">
-                            <!-- Heroicon: Clock -->
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 6v6l4 2m4-2a8 8 0 11-16 0 8 8 0 0116 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-medium text-white">Timesheet</p>
-                            <p class="text-gray-400 text-xs">My weekly timesheet</p>
-                        </div>
-                    </a>
-
-                    <!-- Company (Notion) -->
-                    <a href="#"
-                        class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition">
-                        <div class="text-pink-400">
-                            <!-- Placeholder icon -->
-                            <div
-                                class="w-6 h-6 bg-pink-400 rounded-sm grid place-content-center text-slate-900 font-bold text-xs">
-                                N</div>
-                        </div>
-                        <div>
-                            <p class="font-medium text-white">Company</p>
-                            <p class="text-gray-400 text-xs">Company wiki on Notion</p>
-                        </div>
-                    </a>
-
-                    <!-- Expenses (Expensify) -->
-                    <a href="#"
-                        class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition">
-                        <div class="text-yellow-400">
-                            <!-- Placeholder icon -->
-                            <div
-                                class="w-6 h-6 bg-yellow-300 rounded-sm grid place-content-center text-slate-900 font-bold text-xs">
-                                E</div>
-                        </div>
-                        <div>
-                            <p class="font-medium text-white">Expenses</p>
-                            <p class="text-gray-400 text-xs">Open Expensify</p>
-                        </div>
-                    </a>
-
-                    <!-- Leapsome -->
-                    <a href="#"
-                        class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition">
-                        <div class="text-lime-400">
-                            <!-- Placeholder icon -->
-                            <div
-                                class="w-6 h-6 bg-lime-300 rounded-sm grid place-content-center text-slate-900 font-bold text-xs">
-                                L</div>
-                        </div>
-                        <div>
-                            <p class="font-medium text-white">Leapsome</p>
-                            <p class="text-gray-400 text-xs">Performance & feedback</p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <!-- My info widget -->
-            <div class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white">
-                <h3 class="text-sm font-semibold text-indigo-300 mb-3">My Current Info</h3>
-
-                <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
-
-                    <div>
-                        <dt class="text-gray-400">Line Manager</dt>
-                        <dd class="font-medium text-white">Aoife Byrne</dd>
-                    </div>
-
-                    <div>
-                        <dt class="text-gray-400">Technical Director</dt>
-                        <dd class="font-medium text-white">David O’Connor</dd>
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <dt class="text-gray-400">Current Project</dt>
-                        <dd class="font-medium text-white">GOV Services Profile Portal</dd>
-                    </div>
-
-                    <div>
-                        <dt class="text-gray-400">Project End Date</dt>
-                        <dd class="font-medium text-white">30 September 2025</dd>
-                    </div>
-
-                </dl>
-            </div>
-
-            <!-- My time widget -->
-            <div class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white">
-                <h3 class="text-sm font-semibold text-indigo-300 mb-4">My Time</h3>
-
-                <!-- Filters -->
-                <div class="flex flex-col md:flex-row md:items-end gap-4 mb-4">
-                    <div class="flex-1">
-                        <label class="block text-xs text-gray-400 mb-1" for="search">Search</label>
-                        <input id="search" type="text" placeholder="Search notes, customer..."
-                            class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white placeholder-gray-500" />
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1" for="from">From</label>
-                            <input id="from" type="date"
-                                class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white" />
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1" for="to">To</label>
-                            <input id="to" type="date"
-                                class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Table (desktop only) -->
-                <div class="hidden md:block overflow-x-auto">
-                    <table class="min-w-full text-sm text-left text-white border border-slate-700">
-                        <thead class="bg-slate-700 text-slate-300">
-                            <tr>
-                                <th class="px-3 py-2 border-r border-slate-600">Action</th>
-                                <th class="px-3 py-2 border-r border-slate-600">Week</th>
-                                <th class="px-3 py-2 border-r border-slate-600">Date</th>
-                                <th class="px-3 py-2 border-r border-slate-600">Customer</th>
-                                <th class="px-3 py-2 border-r border-slate-600">Day</th>
-                                <th class="px-3 py-2">Note</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">23</td>
-                                <td class="px-3 py-2">2025-06-01</td>
-                                <td class="px-3 py-2">Revenue</td>
-                                <td class="px-3 py-2">Mon</td>
-                                <td class="px-3 py-2">Investigated API rate caps</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">23</td>
-                                <td class="px-3 py-2">2025-06-02</td>
-                                <td class="px-3 py-2">Education</td>
-                                <td class="px-3 py-2">Tue</td>
-                                <td class="px-3 py-2">Reviewed student export bug</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">23</td>
-                                <td class="px-3 py-2">2025-06-03</td>
-                                <td class="px-3 py-2">Social</td>
-                                <td class="px-3 py-2">Wed</td>
-                                <td class="px-3 py-2">Fixed dashboard translation issue</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">23</td>
-                                <td class="px-3 py-2">2025-06-04</td>
-                                <td class="px-3 py-2">GovDS</td>
-                                <td class="px-3 py-2">Thu</td>
-                                <td class="px-3 py-2">Storybook snapshot upgrade</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">23</td>
-                                <td class="px-3 py-2">2025-06-05</td>
-                                <td class="px-3 py-2">GovDS</td>
-                                <td class="px-3 py-2">Fri</td>
-                                <td class="px-3 py-2">Meeting with OGCIO</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">24</td>
-                                <td class="px-3 py-2">2025-06-10</td>
-                                <td class="px-3 py-2">Revenue</td>
-                                <td class="px-3 py-2">Mon</td>
-                                <td class="px-3 py-2">Deployed search prototype</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">24</td>
-                                <td class="px-3 py-2">2025-06-11</td>
-                                <td class="px-3 py-2">Social</td>
-                                <td class="px-3 py-2">Tue</td>
-                                <td class="px-3 py-2">Updated form validations</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">24</td>
-                                <td class="px-3 py-2">2025-06-12</td>
-                                <td class="px-3 py-2">Education</td>
-                                <td class="px-3 py-2">Wed</td>
-                                <td class="px-3 py-2">Internationalisation tweaks</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">24</td>
-                                <td class="px-3 py-2">2025-06-13</td>
-                                <td class="px-3 py-2">GovDS</td>
-                                <td class="px-3 py-2">Thu</td>
-                                <td class="px-3 py-2">PR review + deploy</td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-3 py-2 flex space-x-2">
-                                    <!-- Edit icon -->
-                                    <a href="#" aria-label="Edit" title="Edit">
-                                        <svg class="w-4 h-4 text-indigo-400 hover:text-indigo-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View icon -->
-                                    <a href="#" aria-label="View" title="View">
-                                        <svg class="w-4 h-4 text-gray-400 hover:text-gray-300" fill="none"
-                                            stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-3 py-2">24</td>
-                                <td class="px-3 py-2">2025-06-14</td>
-                                <td class="px-3 py-2">Revenue</td>
-                                <td class="px-3 py-2">Fri</td>
-                                <td class="px-3 py-2">Client follow-up meeting</td>
-                            </tr>
-                            <!-- More rows -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Mobile Cards -->
-                <div class="md:hidden space-y-4">
-                    <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-indigo-400">✏️</span>
-                            <span class="text-xs text-gray-400">Week 23</span>
-                        </div>
-                        <p class="text-white mb-1"><span class="text-gray-400">Date:</span> 2025-06-01</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Customer:</span> Revenue</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Day:</span> Mon</p>
-                        <p class="text-white"><span class="text-gray-400">Note:</span> Investigated API rate caps</p>
-                    </div>
-                    <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-indigo-400">✏️</span>
-                            <span class="text-xs text-gray-400">Week 23</span>
-                        </div>
-                        <p class="text-white mb-1"><span class="text-gray-400">Date:</span> 2025-06-01</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Customer:</span> Revenue</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Day:</span> Mon</p>
-                        <p class="text-white"><span class="text-gray-400">Note:</span> Investigated API rate caps</p>
-                    </div>
-                    <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-indigo-400">✏️</span>
-                            <span class="text-xs text-gray-400">Week 23</span>
-                        </div>
-                        <p class="text-white mb-1"><span class="text-gray-400">Date:</span> 2025-06-01</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Customer:</span> Revenue</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Day:</span> Mon</p>
-                        <p class="text-white"><span class="text-gray-400">Note:</span> Investigated API rate caps</p>
-                    </div>
-                    <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-indigo-400">✏️</span>
-                            <span class="text-xs text-gray-400">Week 23</span>
-                        </div>
-                        <p class="text-white mb-1"><span class="text-gray-400">Date:</span> 2025-06-01</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Customer:</span> Revenue</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Day:</span> Mon</p>
-                        <p class="text-white"><span class="text-gray-400">Note:</span> Investigated API rate caps</p>
-                    </div>
-                    <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-indigo-400">✏️</span>
-                            <span class="text-xs text-gray-400">Week 23</span>
-                        </div>
-                        <p class="text-white mb-1"><span class="text-gray-400">Date:</span> 2025-06-01</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Customer:</span> Revenue</p>
-                        <p class="text-white mb-1"><span class="text-gray-400">Day:</span> Mon</p>
-                        <p class="text-white"><span class="text-gray-400">Note:</span> Investigated API rate caps</p>
-                    </div>
-                    <!-- More cards -->
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-6 flex justify-between items-center text-xs text-slate-400">
-                    <p>Showing 1–10 of 42 entries</p>
-                    <div class="space-x-2">
-                        <button class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600">Previous</button>
-                        <button class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600">Next</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Right Sidebar -->
-        <aside class="lg:col-span-3 space-y-4">
-            <!-- Reminders -->
-            <div class="bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 rounded-lg p-5 shadow-lg text-white">
-                <h3 class="text-xl font-bold mb-4 border-b border-white/40 pb-2">🔔 Reminders</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner">
-                        <span>⏰ Missing Timesheet - due tomorrow</span>
-                        <span class="text-xs bg-red-600 rounded px-2 py-0.5">URGENT</span>
-                    </li>
-                    <li class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner">
-                        <span>📅 Upcoming Meeting with Design Team</span>
-                        <span class="text-xs bg-yellow-400 text-black rounded px-2 py-0.5">In 2 days</span>
-                    </li>
-                    <li class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner">
-                        <span>📝 Submit Expense Report</span>
-                        <span class="text-xs bg-green-500 rounded px-2 py-0.5">Due next week</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Social media feed -->
-            <div class="bg-gradient-to-br from-blue-500 via-cyan-400 to-indigo-600 rounded-lg p-5 shadow-lg text-white">
-                <h3 class="text-xl font-bold mb-4 border-b border-white/40 pb-2">🐦 Social Feed</h3>
-                <ul class="space-y-4 text-sm max-h-90 overflow-y-auto">
-                  <li class="flex space-x-3 items-start">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="w-10 h-10 rounded-full shadow-lg" />
-                    <div>
-                      <p><span class="font-semibold">@BroSuiteOfficial</span> Just rolled out the new dashboard update 🚀 #productivity</p>
-                      <p class="text-xs opacity-70">2h ago</p>
-                    </div>
-                  </li>
-                  <li class="flex space-x-3 items-start">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Avatar" class="w-10 h-10 rounded-full shadow-lg" />
-                    <div>
-                      <p><span class="font-semibold">@Jane_Doe</span> Loving the time off widget, really helps plan my vacation! ☀️🌴</p>
-                      <p class="text-xs opacity-70">5h ago</p>
-                    </div>
-                  </li>
-                  <li class="flex space-x-3 items-start">
-                    <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="Avatar" class="w-10 h-10 rounded-full shadow-lg" />
-                    <div>
-                      <p><span class="font-semibold">@TechGuru</span> Anyone else struggling with NetSuite’s drag & drop? 😅</p>
-                      <p class="text-xs opacity-70">8h ago</p>
-                    </div>
-                  </li>
-                  <li class="flex space-x-3 items-start">
-                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Avatar" class="w-10 h-10 rounded-full shadow-lg" />
-                    <div>
-                      <p><span class="font-semibold">@ProductLead</span> Pro tip: Always test your dashboards in mobile view 📱 #ux</p>
-                      <p class="text-xs opacity-70">12h ago</p>
-                    </div>
-                  </li>
-                </ul>
+          <div class="space-y-3">
+            <!-- Annual Leave -->
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-400">Annual Leave</p>
+                <p>
+                  <span class="text-lg font-bold text-green-400">16</span
+                  ><span class="text-gray-400"> / 24 days</span>
+                </p>
               </div>
-        </aside>
+              <div class="w-20 h-2 bg-gray-700 rounded">
+                <div class="h-2 bg-green-500 rounded" style="width: 66%"></div>
+              </div>
+            </div>
+
+            <!-- Training Leave -->
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-400">Training Leave</p>
+                <p>
+                  <span class="text-lg font-bold text-blue-400">4</span
+                  ><span class="text-gray-400"> / 10 days</span>
+                </p>
+              </div>
+              <div class="w-20 h-2 bg-gray-700 rounded">
+                <div class="h-2 bg-blue-500 rounded" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <!-- Special Leave -->
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-400">OS Leave</p>
+                <p>
+                  <span class="text-lg font-bold text-orange-400">9</span
+                  ><span class="text-gray-400"> / 12 days</span>
+                </p>
+              </div>
+              <div class="w-20 h-2 bg-gray-700 rounded">
+                <div class="h-2 bg-orange-400 rounded" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My approved widget -->
+        <div
+          class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-sm text-white"
+        >
+          <h3 class="text-sm font-semibold text-indigo-300 mb-3">
+            My Approved Annual Leave
+          </h3>
+
+          <!-- Total Summary -->
+          <div class="flex justify-between items-center mb-4">
+            <p class="text-gray-400">Total days</p>
+            <p class="text-lg font-bold text-green-400">14</p>
+          </div>
+
+          <!-- List of Leave Entries -->
+          <div class="space-y-3">
+            <div
+              class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900"
+            >
+              <div>
+                <p class="text-gray-300 font-medium">01 Jul – 05 Jul</p>
+                <p class="text-gray-500">Mon to Fri</p>
+              </div>
+              <div class="text-right">
+                <p class="font-bold text-green-300">5 days</p>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900"
+            >
+              <div>
+                <p class="text-gray-300 font-medium">15 Jul – 19 Jul</p>
+                <p class="text-gray-500">Mon to Fri</p>
+              </div>
+              <div class="text-right">
+                <p class="font-bold text-green-300">5 days</p>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between text-xs border border-slate-700 rounded-md p-2 bg-slate-900"
+            >
+              <div>
+                <p class="text-gray-300 font-medium">29 Jul – 31 Jul</p>
+                <p class="text-gray-500">Mon to Wed</p>
+              </div>
+              <div class="text-right">
+                <p class="font-bold text-green-300">3 days</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <section class="lg:col-span-6 space-y-4">
+        <!-- Links widget -->
+        <div
+          class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white"
+        >
+          <h3 class="text-sm font-semibold text-indigo-300 mb-3">
+            Shortcut Links
+          </h3>
+
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <!-- Time Off Group -->
+            <a
+              href="#"
+              class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition"
+            >
+              <div class="text-indigo-400">
+                <!-- Heroicon: Calendar -->
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-white">Time Off</p>
+                <p class="text-gray-400 text-xs">Manage requests and summary</p>
+              </div>
+            </a>
+
+            <!-- Timesheet -->
+            <a
+              href="#"
+              class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition"
+            >
+              <div class="text-orange-400">
+                <!-- Heroicon: Clock -->
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6l4 2m4-2a8 8 0 11-16 0 8 8 0 0116 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-white">Timesheet</p>
+                <p class="text-gray-400 text-xs">My weekly timesheet</p>
+              </div>
+            </a>
+
+            <!-- Company (Notion) -->
+            <a
+              href="#"
+              class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition"
+            >
+              <div class="text-pink-400">
+                <!-- Placeholder icon -->
+                <div
+                  class="w-6 h-6 bg-pink-400 rounded-sm grid place-content-center text-slate-900 font-bold text-xs"
+                >
+                  N
+                </div>
+              </div>
+              <div>
+                <p class="font-medium text-white">Company</p>
+                <p class="text-gray-400 text-xs">Company wiki on Notion</p>
+              </div>
+            </a>
+
+            <!-- Expenses (Expensify) -->
+            <a
+              href="#"
+              class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition"
+            >
+              <div class="text-yellow-400">
+                <!-- Placeholder icon -->
+                <div
+                  class="w-6 h-6 bg-yellow-300 rounded-sm grid place-content-center text-slate-900 font-bold text-xs"
+                >
+                  E
+                </div>
+              </div>
+              <div>
+                <p class="font-medium text-white">Expenses</p>
+                <p class="text-gray-400 text-xs">Open Expensify</p>
+              </div>
+            </a>
+
+            <!-- Leapsome -->
+            <a
+              href="#"
+              class="flex items-start gap-3 p-3 bg-slate-900 hover:bg-slate-700 rounded-md border border-slate-700 transition"
+            >
+              <div class="text-lime-400">
+                <!-- Placeholder icon -->
+                <div
+                  class="w-6 h-6 bg-lime-300 rounded-sm grid place-content-center text-slate-900 font-bold text-xs"
+                >
+                  L
+                </div>
+              </div>
+              <div>
+                <p class="font-medium text-white">Leapsome</p>
+                <p class="text-gray-400 text-xs">Performance & feedback</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- My info widget -->
+        <div
+          class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white"
+        >
+          <h3 class="text-sm font-semibold text-indigo-300 mb-3">
+            My Current Info
+          </h3>
+
+          <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+            <div>
+              <dt class="text-gray-400">Line Manager</dt>
+              <dd class="font-medium text-white">Aoife Byrne</dd>
+            </div>
+
+            <div>
+              <dt class="text-gray-400">Technical Director</dt>
+              <dd class="font-medium text-white">David O’Connor</dd>
+            </div>
+
+            <div class="sm:col-span-2">
+              <dt class="text-gray-400">Current Project</dt>
+              <dd class="font-medium text-white">
+                GOV Services Profile Portal
+              </dd>
+            </div>
+
+            <div>
+              <dt class="text-gray-400">Project End Date</dt>
+              <dd class="font-medium text-white">30 September 2025</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- My time widget -->
+        <div
+          class="bg-slate-800 rounded-md p-4 shadow-sm border border-slate-700 text-white"
+        >
+          <h3 class="text-sm font-semibold text-indigo-300 mb-4">My Time</h3>
+
+          <!-- Filters -->
+          <div class="flex flex-col md:flex-row md:items-end gap-4 mb-4">
+            <div class="flex-1">
+              <label class="block text-xs text-gray-400 mb-1" for="search"
+                >Search</label
+              >
+              <input
+                id="search"
+                type="text"
+                placeholder="Search notes, customer..."
+                class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white placeholder-gray-500"
+              />
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <div>
+                <label class="block text-xs text-gray-400 mb-1" for="from"
+                  >From</label
+                >
+                <input
+                  id="from"
+                  type="date"
+                  class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white"
+                />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1" for="to"
+                  >To</label
+                >
+                <input
+                  id="to"
+                  type="date"
+                  class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Table (desktop only) -->
+          <div class="hidden md:block overflow-x-auto">
+            <table
+              class="min-w-full text-sm text-left text-white border border-slate-700"
+            >
+              <thead class="bg-slate-700 text-slate-300">
+                <tr>
+                  <th class="px-3 py-2 border-r border-slate-600">Action</th>
+                  <th class="px-3 py-2 border-r border-slate-600">Week</th>
+                  <th class="px-3 py-2 border-r border-slate-600">Date</th>
+                  <th class="px-3 py-2 border-r border-slate-600">Customer</th>
+                  <th class="px-3 py-2 border-r border-slate-600">Day</th>
+                  <th class="px-3 py-2">Note</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-700">
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">23</td>
+                  <td class="px-3 py-2">2025-06-01</td>
+                  <td class="px-3 py-2">Revenue</td>
+                  <td class="px-3 py-2">Mon</td>
+                  <td class="px-3 py-2">Investigated API rate caps</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">23</td>
+                  <td class="px-3 py-2">2025-06-02</td>
+                  <td class="px-3 py-2">Education</td>
+                  <td class="px-3 py-2">Tue</td>
+                  <td class="px-3 py-2">Reviewed student export bug</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">23</td>
+                  <td class="px-3 py-2">2025-06-03</td>
+                  <td class="px-3 py-2">Social</td>
+                  <td class="px-3 py-2">Wed</td>
+                  <td class="px-3 py-2">Fixed dashboard translation issue</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">23</td>
+                  <td class="px-3 py-2">2025-06-04</td>
+                  <td class="px-3 py-2">GovDS</td>
+                  <td class="px-3 py-2">Thu</td>
+                  <td class="px-3 py-2">Storybook snapshot upgrade</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">23</td>
+                  <td class="px-3 py-2">2025-06-05</td>
+                  <td class="px-3 py-2">GovDS</td>
+                  <td class="px-3 py-2">Fri</td>
+                  <td class="px-3 py-2">Meeting with OGCIO</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">24</td>
+                  <td class="px-3 py-2">2025-06-10</td>
+                  <td class="px-3 py-2">Revenue</td>
+                  <td class="px-3 py-2">Mon</td>
+                  <td class="px-3 py-2">Deployed search prototype</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">24</td>
+                  <td class="px-3 py-2">2025-06-11</td>
+                  <td class="px-3 py-2">Social</td>
+                  <td class="px-3 py-2">Tue</td>
+                  <td class="px-3 py-2">Updated form validations</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">24</td>
+                  <td class="px-3 py-2">2025-06-12</td>
+                  <td class="px-3 py-2">Education</td>
+                  <td class="px-3 py-2">Wed</td>
+                  <td class="px-3 py-2">Internationalisation tweaks</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">24</td>
+                  <td class="px-3 py-2">2025-06-13</td>
+                  <td class="px-3 py-2">GovDS</td>
+                  <td class="px-3 py-2">Thu</td>
+                  <td class="px-3 py-2">PR review + deploy</td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                  <td class="px-3 py-2 flex space-x-2">
+                    <!-- Edit icon -->
+                    <a href="#" aria-label="Edit" title="Edit">
+                      <svg
+                        class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+                        />
+                      </svg>
+                    </a>
+                    <!-- View icon -->
+                    <a href="#" aria-label="View" title="View">
+                      <svg
+                        class="w-4 h-4 text-gray-400 hover:text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="px-3 py-2">24</td>
+                  <td class="px-3 py-2">2025-06-14</td>
+                  <td class="px-3 py-2">Revenue</td>
+                  <td class="px-3 py-2">Fri</td>
+                  <td class="px-3 py-2">Client follow-up meeting</td>
+                </tr>
+                <!-- More rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Cards -->
+          <div class="md:hidden space-y-4">
+            <div
+              class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-indigo-400">✏️</span>
+                <span class="text-xs text-gray-400">Week 23</span>
+              </div>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Date:</span> 2025-06-01
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Customer:</span> Revenue
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Day:</span> Mon
+              </p>
+              <p class="text-white">
+                <span class="text-gray-400">Note:</span> Investigated API rate
+                caps
+              </p>
+            </div>
+            <div
+              class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-indigo-400">✏️</span>
+                <span class="text-xs text-gray-400">Week 23</span>
+              </div>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Date:</span> 2025-06-01
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Customer:</span> Revenue
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Day:</span> Mon
+              </p>
+              <p class="text-white">
+                <span class="text-gray-400">Note:</span> Investigated API rate
+                caps
+              </p>
+            </div>
+            <div
+              class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-indigo-400">✏️</span>
+                <span class="text-xs text-gray-400">Week 23</span>
+              </div>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Date:</span> 2025-06-01
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Customer:</span> Revenue
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Day:</span> Mon
+              </p>
+              <p class="text-white">
+                <span class="text-gray-400">Note:</span> Investigated API rate
+                caps
+              </p>
+            </div>
+            <div
+              class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-indigo-400">✏️</span>
+                <span class="text-xs text-gray-400">Week 23</span>
+              </div>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Date:</span> 2025-06-01
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Customer:</span> Revenue
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Day:</span> Mon
+              </p>
+              <p class="text-white">
+                <span class="text-gray-400">Note:</span> Investigated API rate
+                caps
+              </p>
+            </div>
+            <div
+              class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-indigo-400">✏️</span>
+                <span class="text-xs text-gray-400">Week 23</span>
+              </div>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Date:</span> 2025-06-01
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Customer:</span> Revenue
+              </p>
+              <p class="text-white mb-1">
+                <span class="text-gray-400">Day:</span> Mon
+              </p>
+              <p class="text-white">
+                <span class="text-gray-400">Note:</span> Investigated API rate
+                caps
+              </p>
+            </div>
+            <!-- More cards -->
+          </div>
+
+          <!-- Pagination -->
+          <div
+            class="mt-6 flex justify-between items-center text-xs text-slate-400"
+          >
+            <p>Showing 1–10 of 42 entries</p>
+            <div class="space-x-2">
+              <button
+                class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600"
+              >
+                Previous
+              </button>
+              <button
+                class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Sidebar -->
+      <aside class="lg:col-span-3 space-y-4">
+        <!-- Reminders -->
+        <div
+          class="bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 rounded-lg p-5 shadow-lg text-white"
+        >
+          <h3 class="text-xl font-bold mb-4 border-b border-white/40 pb-2">
+            🔔 Reminders
+          </h3>
+          <ul class="space-y-3 text-sm">
+            <li
+              class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner"
+            >
+              <span>⏰ Missing Timesheet - due tomorrow</span>
+              <span class="text-xs bg-red-600 rounded px-2 py-0.5">URGENT</span>
+            </li>
+            <li
+              class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner"
+            >
+              <span>📅 Upcoming Meeting with Design Team</span>
+              <span class="text-xs bg-yellow-400 text-black rounded px-2 py-0.5"
+                >In 2 days</span
+              >
+            </li>
+            <li
+              class="flex justify-between items-center bg-purple-900/50 rounded p-3 shadow-inner"
+            >
+              <span>📝 Submit Expense Report</span>
+              <span class="text-xs bg-green-500 rounded px-2 py-0.5"
+                >Due next week</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social media feed -->
+        <div
+          class="bg-gradient-to-br from-blue-500 via-cyan-400 to-indigo-600 rounded-lg p-5 shadow-lg text-white"
+        >
+          <h3 class="text-xl font-bold mb-4 border-b border-white/40 pb-2">
+            🐦 Social Feed
+          </h3>
+          <ul class="space-y-4 text-sm max-h-90 overflow-y-auto">
+            <li class="flex space-x-3 items-start">
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full shadow-lg"
+              />
+              <div>
+                <p>
+                  <span class="font-semibold">@BroSuiteOfficial</span> Just
+                  rolled out the new dashboard update 🚀 #productivity
+                </p>
+                <p class="text-xs opacity-70">2h ago</p>
+              </div>
+            </li>
+            <li class="flex space-x-3 items-start">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full shadow-lg"
+              />
+              <div>
+                <p>
+                  <span class="font-semibold">@Jane_Doe</span> Loving the time
+                  off widget, really helps plan my vacation! ☀️🌴
+                </p>
+                <p class="text-xs opacity-70">5h ago</p>
+              </div>
+            </li>
+            <li class="flex space-x-3 items-start">
+              <img
+                src="https://randomuser.me/api/portraits/men/88.jpg"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full shadow-lg"
+              />
+              <div>
+                <p>
+                  <span class="font-semibold">@TechGuru</span> Anyone else
+                  struggling with NetSuite’s drag & drop? 😅
+                </p>
+                <p class="text-xs opacity-70">8h ago</p>
+              </div>
+            </li>
+            <li class="flex space-x-3 items-start">
+              <img
+                src="https://randomuser.me/api/portraits/women/12.jpg"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full shadow-lg"
+              />
+              <div>
+                <p>
+                  <span class="font-semibold">@ProductLead</span> Pro tip:
+                  Always test your dashboards in mobile view 📱 #ux
+                </p>
+                <p class="text-xs opacity-70">12h ago</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </aside>
     </main>
+  </body>
 
-</body>
-
+  <template id="generic-widget-loader">
+    <div
+      class="flex flex-col items-center justify-center h-24 space-y-2"
+      id="your-loader"
+    >
+      <div class="relative w-6 h-6">
+        <div
+          class="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 blur-lg"
+        ></div>
+        <div
+          class="w-6 h-6 border-4 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin z-10 relative"
+        ></div>
+      </div>
+      <p class="text-indigo-300 text-xs animate-pulse">
+        Loading your widget...
+      </p>
+    </div>
+  </template>
 </html>
