@@ -1,23 +1,23 @@
 <h3 class="text-sm font-semibold text-indigo-300 mb-3">My Current Info</h3>
 
 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
-  <div>
-    <dt class="text-gray-400">Line Manager</dt>
-    <dd class="font-medium text-white">{{.LineManager}}</dd>
+  <div class="flex flex-row sm:flex-col">
+    <dt class="text-gray-400 sm:mb-1 min-w-24">Line Manager</dt>
+    <dd class="text-white font-medium ml-2 sm:ml-0">{{.LineManager}}</dd>
   </div>
 
-  <div>
-    <dt class="text-gray-400">Technical Director</dt>
-    <dd class="font-medium text-white">{{.TechnicalDirector}}</dd>
+  <div class="flex flex-row sm:flex-col">
+    <dt class="text-gray-400 sm:mb-1 min-w-24">Technical Director</dt>
+    <dd class="text-white font-medium ml-2 sm:ml-0">{{.TechnicalDirector}}</dd>
   </div>
 
-  <div class="sm:col-span-2">
-    <dt class="text-gray-400">Current Project</dt>
-    <dd class="font-medium text-white">{{.CurrentProject}}</dd>
+  <div class="flex flex-row sm:flex-col ">
+    <dt class="text-gray-400 sm:mb-1 min-w-24">Current Project</dt>
+    <dd class="text-white font-medium ml-2 sm:ml-0">{{.CurrentProject}}</dd>
   </div>
 
-  <div>
-    <dt class="text-gray-400">Project End Date</dt>
-    <dd class="font-medium text-white">{{.CurrentProjectEnd}}</dd>
+  <div class="flex flex-row sm:flex-col">
+    <dt class="text-gray-400 sm:mb-1 min-w-24">Project End Date</dt>
+    <dd class="text-white font-medium ml-2 sm:ml-0">{{.CurrentProjectEnd}}</dd>
   </div>
 </dl>
