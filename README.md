@@ -1,7 +1,7 @@
 # Hi
 
 #### BEWARE! 
-Compiling with poor usage of gofakeit can be slow.
+Compiling can be slow due to bad usage of gofakeit (⌐■_■)
 
 ```bash
 go mod tidy
