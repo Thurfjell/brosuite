@@ -1,4 +1,6 @@
 # Hi
+Just like Netsuite, but a bit different.
+
 
 #### BEWARE! 
 Compiling can be slow due to bad usage of gofakeit (⌐■_■)
