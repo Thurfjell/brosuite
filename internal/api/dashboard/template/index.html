@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Don't think just watch</title>
+    <title>BROSUITE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
     <script>
@@ -23,15 +23,18 @@
             // Lets just play happy path for now
 
             const content = await resp.text();
-            // const wrapper = document.createElement("div");
-            // wrapper.innerHTML = content;
-            target.innerHTML = content; //wrapper.firstChild
+            target.innerHTML = content;
+            const refreshButton = target.querySelector(
+              '[data-js="refresh-button"]'
+            );
+            if (refreshButton) {
+              refreshButton.addEventListener("click", (evt) => {
+                loadWidget(target);
+              });
+            }
           });
         }
 
-        console.log(
-          document.querySelectorAll('[data-js="widget-container"] > div')
-        );
         // On load
         document
           .querySelectorAll('[data-js="widget-container"] > div')
@@ -122,7 +125,9 @@
 
           <div class="text-right leading-tight hidden sm:block">
             <div class="font-semibold text-white">{{.UserName}}</div>
-            <div class="text-xs text-gray-400">{{.CompanyName}} · {{.CompanyRole}}</div>
+            <div class="text-xs text-gray-400">
+              {{.CompanyName}} · {{.CompanyRole}}
+            </div>
           </div>
 
           <div
@@ -156,10 +161,7 @@
 
       <aside class="lg:col-span-3 space-y-4" data-js="widget-container">
         {{ range .Left }}
-        <div
-          id="{{.ID}}"
-          class="{{.Class}}"
-        ></div>
+        <div id="{{.ID}}" class="{{.Class}}"></div>
         {{ end }}
       </aside>
       <section class="lg:col-span-6 space-y-4" data-js="widget-container">

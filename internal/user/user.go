@@ -13,6 +13,12 @@ type ApprovedLeave struct {
 	To   time.Time
 }
 
+type TimeDataPoint struct {
+	Date     time.Time
+	Customer string
+	Note     string
+}
+
 type ReadData struct {
 	Name               string
 	LineManager        string
@@ -31,6 +37,8 @@ type ReadData struct {
 	LeftWidgetIDS      []string
 	MainWidgetIDS      []string
 	ApprovedLeaves     []ApprovedLeave
+	TimeData           []TimeDataPoint
+	TimeDataTotal      int
 }
 
 type RandomUserBuster struct {
@@ -82,6 +90,16 @@ func RandomUser() (user *ReadData) {
 		})
 	}
 
+	customer := gofakeit.Company()
+	timeData := make([]TimeDataPoint, 0, 10)
+	for i := range 10 {
+		timeData = append(timeData, TimeDataPoint{
+			Date:     time.Now().Add(time.Duration(-i*24) * time.Hour),
+			Customer: customer,
+			Note:     gofakeit.HipsterSentence(10),
+		})
+	}
+
 	user = &ReadData{
 		Name:               gofakeit.Name(),
 		Company:            gofakeit.Company(),
@@ -97,9 +115,11 @@ func RandomUser() (user *ReadData) {
 		SauceLeaveTotal:    3,
 		SauceLeaveUsed:     1,
 		LeftWidgetIDS:      []string{"bhao3brtq4gjwqr5b3kdxeiz65", "jsxqrq6sx33fg2vfnpq4zdldn4"},
-		MainWidgetIDS:      []string{"giqlvoffyv6gypkrb32o7tj5et", "ucr4psiigncdzbtsnviy7akbtc"},
-		RightWidgetIDS:     []string{},
+		MainWidgetIDS:      []string{"giqlvoffyv6gypkrb32o7tj5et", "ucr4psiigncdzbtsnviy7akbtc", "ahuecy3xft2u6pzcry27ycn5o4"},
+		RightWidgetIDS:     []string{"yulgmb5mfvzfov6wqq3qiwwclj", "t3vt6s3kdwbboye3mvo6fh7dun"},
 		ApprovedLeaves:     leaves,
+		TimeData:           timeData,
+		TimeDataTotal:      1337,
 	}
 	return
 }

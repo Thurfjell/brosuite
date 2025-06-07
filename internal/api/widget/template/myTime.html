@@ -1,0 +1,140 @@
+<h3 class="text-sm font-semibold text-indigo-300 mb-4">My Time</h3>
+
+<!-- Filters -->
+<div class="flex flex-col md:flex-row md:items-end gap-4 mb-4">
+  <div class="flex-1">
+    <label class="block text-xs text-gray-400 mb-1" for="search">Search</label>
+    <input
+      id="search"
+      type="text"
+      placeholder="Search notes, customer..."
+      class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white placeholder-gray-500"
+    />
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
+    <div>
+      <label class="block text-xs text-gray-400 mb-1" for="from">From</label>
+      <input
+        id="from"
+        type="date"
+        class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white"
+      />
+    </div>
+    <div>
+      <label class="block text-xs text-gray-400 mb-1" for="to">To</label>
+      <input
+        id="to"
+        type="date"
+        class="px-3 py-2 bg-slate-900 border border-slate-700 rounded-md text-sm text-white"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Table (desktop only) -->
+<div class="hidden md:block overflow-x-auto">
+  <table
+    class="min-w-full text-sm text-left text-white border border-slate-700"
+  >
+    <thead class="bg-slate-700 text-slate-300">
+      <tr>
+        <th class="px-3 py-2 border-r border-slate-600">Action</th>
+        <th class="px-3 py-2 border-r border-slate-600">Week</th>
+        <th class="px-3 py-2 border-r border-slate-600">Date</th>
+        <th class="px-3 py-2 border-r border-slate-600">Customer</th>
+        <th class="px-3 py-2 border-r border-slate-600">Day</th>
+        <th class="px-3 py-2">Note</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-700">
+      {{ range .Times}}
+      <tr class="hover:bg-slate-700">
+        <td class="px-3 py-2 flex space-x-2">
+          <!-- Edit icon -->
+          <a href="#" aria-label="Edit" title="Edit">
+            <svg
+              class="w-4 h-4 text-indigo-400 hover:text-indigo-300"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.862 3.487a2.1 2.1 0 113.024 2.918l-10.5 10.5a2.1 2.1 0 01-.878.527l-3.725 1.115 1.115-3.725a2.1 2.1 0 01.527-.878l10.5-10.5z"
+              />
+            </svg>
+          </a>
+          <!-- View icon -->
+          <a href="#" aria-label="View" title="View">
+            <svg
+              class="w-4 h-4 text-gray-400 hover:text-gray-300"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 12s3.75-6.75 9.75-6.75 9.75 6.75 9.75 6.75-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </a>
+        </td>
+        <td class="px-3 py-2">{{.Week}}</td>
+        <td class="px-3 py-2">{{.Date}}</td>
+        <td class="px-3 py-2">{{.CustomerName}}</td>
+        <td class="px-3 py-2">{{.Week}}</td>
+        <td class="px-3 py-2">{{.Note}}</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
+
+<!-- Mobile Cards -->
+<div class="md:hidden space-y-4">
+  {{range .Times}}
+  <div class="p-3 bg-slate-900 border border-slate-700 rounded-md text-sm">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-indigo-400">✏️</span>
+      <span class="text-xs text-gray-400">Week {{.Week}}</span>
+    </div>
+    <p class="text-white mb-1">
+      <span class="text-gray-400">Date:</span> {{.Date}}
+    </p>
+    <p class="text-white mb-1">
+      <span class="text-gray-400">Customer:</span> {{.CustomerName}}
+    </p>
+    <p class="text-white mb-1">
+      <span class="text-gray-400">Day:</span> {{.Day}}
+    </p>
+    <p class="text-white"><span class="text-gray-400">Note:</span> {{.Note}}</p>
+  </div>
+  {{end}}
+</div>
+
+<!-- Pagination -->
+<div class="mt-6 flex justify-between items-center text-xs text-slate-400">
+  <p>Showing 1-10 of {{.Total}} entries</p>
+  <div class="space-x-2">
+    <button
+      class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600"
+    >
+      Previous
+    </button>
+    <button
+      class="px-2 py-1 bg-slate-700 text-white rounded hover:bg-slate-600"
+    >
+      Next
+    </button>
+  </div>
+</div>

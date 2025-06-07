@@ -16,6 +16,7 @@ import (
 func main() {
 	userService := user.New()
 	widget, _ := widget.New(userService)
+	// this is ugly and terrible, fix plz
 	dashboard, err := dashboard.New(widget, userService)
 
 	if err != nil {
